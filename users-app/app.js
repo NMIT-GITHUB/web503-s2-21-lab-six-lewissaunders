@@ -101,3 +101,18 @@ editUserInputsUI.forEach(function (textField) {
 });
 
 document.getElementById('edit-user-module').style.display = "none";
+
+// delete icon 
+let deleteIconUI = document.createElement("span");
+deleteIconUI.class = "delete-user";
+deleteIconUI.innerHTML = " ☓";
+deleteIconUI.setAttribute("userid", key);
+deleteIconUI.addEventListener("click", deleteButtonClicked) 
+$li.append(deleteIconUI)
+
+function deleteButtonClicked(e) {
+    e.stopPropagation();
+    const userID = e.target.getAttribute("userid");
+    const userRef = dbRef.child('users/' + userID);
+    userRef.remove()
+}
